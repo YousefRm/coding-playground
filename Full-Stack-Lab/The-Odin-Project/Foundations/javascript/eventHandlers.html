@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="display">
+        <h1>Event Handlers Example</h1>
+        <p></p>
+    </section>
+    <script>
+         let disp = document.querySelector('.display');
+         let p = document.querySelector('.display p');
+            let eventHandlers = {
+                click: function(event) {
+                    disp.innerHTML += `<p>Click event triggered at (${event.clientX}, ${event.clientY})</p>`;
+                },
+                mouseover: function(event) {
+                    disp.innerHTML += `<p>Mouse over at (${event.clientX}, ${event.clientY})</p>`;
+                },
+                keydown: function(event) {
+                    if (event.key === "Backspace") { p.textContent = p.textContent.slice(0, -1);}
+                    else if (event.key === "Enter") { p.textContent += '\n'; }
+                    else if (event.key === "Escape") { p.textContent = ''; }
+                    else if (event.key === "Tab") { event.preventDefualt() ; p.textContent += '    '; }
+                    else if (event.key === "Delete") { p.textContent = ''; }
+                    else if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "ArrowUp" || event.key === "ArrowDown") {
+                        // Do nothing for arrow keys
+                    } else {
+                        // Append the key pressed to the paragraph
+                    p.textContent += event.key;
+                    
+                }
+                }
+            };
+            disp.addEventListener('click', eventHandlers.click);
+           
+            document.addEventListener('keydown', eventHandlers.keydown);
+    </script>
+</body>
+</html>
