@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        p,h1 {
+            margin: 0;
+            padding: 0;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 20px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+        .header button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .header button:hover {
+            background-color: #0056b3;
+        }
+        .container {
+         width: 100vw;
+         height: 100vh;
+         display: flex; 
+         flex-wrap: wrap;
+        }
+        .container div {
+           background-color: white;
+           transition: background-color 0.3s ease-in-out;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>Itch A Sketch</h1>
+            <button id="clear">Clear</button>
+        </div>
+        <div class="container">
+
+        </div>
+    </div>
+    <script>
+        const container = document.querySelector('.container');
+        const clearButton = document.getElementById('clear');
+        clearButton.addEventListener("click",function () {
+            createdivs(prompt("Inter X*X Grid Only One Number"));
+        }) ;
+        function createdivs(rowXcol) {
+            container.innerHTML = '' ;
+            for ( let i = 0 ; i < rowXcol*rowXcol; i++) {
+                let rgb1 = Math.floor(Math.random() * 266);
+                let rgb2 = Math.floor(Math.random() * 256);
+                let rgb3 = Math.floor(Math.random() * 256);
+                const div = document.createElement('div');
+                div.style.border = '1px solid black';
+                div.style.width = `${100 / rowXcol}%`;
+                div.style.height = `${100 / rowXcol}%`;
+                div.addEventListener("mouseover",function () {
+                    this.style.backgroundColor = `rgb(${rgb1} ,${rgb2} ,${rgb3} )`
+                });
+                div.classList.add('box');
+                container.appendChild(div);
+            }
+        }
+        createdivs(8);
+    </script>
+</body>
+</html>
