@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .shopping-item {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            
+        }
+        .shopping-item:hover {
+            background-color: #f0f0f0;
+        }
+        .shopping-item:active {
+            background-color: #e0e0e0;
+        }
+        li button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        li button:hover {
+            background-color: #c82333;
+        }
+        li button:active {
+            background-color: #bd2130;
+        }
+        li button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Shopping List</h1>
+        <form id="shopping-form">
+            <input type="text" id="item-input" placeholder="Add an item" required>
+            <button type="submit">Add Item</button>
+        </form>
+        <ul id="shopping-list"></ul>
+    </section>
+    <script>
+        const form = document.getElementById('shopping-form');
+        const itemInput = document.getElementById('item-input');
+        const shoppingList = document.getElementById('shopping-list');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const itemText = itemInput.value.trim();
+            if (itemText) {
+                const li = document.createElement('li');
+                const btn = document.createElement('button');
+                btn.addEventListener('click', function() {
+                    li.remove();
+                });
+                btn.textContent = 'Remove';
+                li.className = 'shopping-item';
+                li.textContent = itemText;
+                li.appendChild(btn);
+
+                shoppingList.appendChild(li);
+
+                itemInput.value = '';
+            }
+        });
+        shoppingList.addEventListener('click', function(event) {
+            if (event.target.tagName === 'LI') {
+                event.target.remove();
+            }
+        });
+    </script>
+</body>
+</html>
