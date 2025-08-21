@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     :root {
+        box-sizing: border-box;
+     }
+     * {
+        box-sizing: inherit;
+     }
+     p {
+        padding: 0;
+        margin: 0;
+     }
+     body {
+        margin: 0;
+        padding: 0;
+        height: 100vh ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ccc ;
+     }
+     .mainbody {
+      display: flex ;
+      flex-direction: column;
+      height: 50vh ;
+      width : 50vw ;
+      max-width: 400px;
+      background-color: rgb(72, 205, 205);
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgb(0, 0, 0);
+     }
+    .display {
+     flex: 1;
+     background-color: rgb(210, 230, 230);
+     margin: 2%;
+     border-radius: 15px;
+     box-shadow: 0 0 8px rgb(65, 65, 65);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     font-size: 1.5em;
+    }
+    .inputs {
+        padding-left: 20px;
+        overflow: scroll;
+        scrollbar-width: none;
+    }
+    .result {
+        text-align: end;
+        padding-right: 20px;
+        overflow: scroll;
+        scrollbar-width: none;
+    }
+    .buttons {
+        display: flex;
+        flex: 3;
+        flex-wrap: wrap;
+        gap: 1%;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .buttons div {
+        width: 21% ;
+        height: 17%;
+        text-align: center;
+        background-color: black;
+        color: white;
+        font-size: 1.5em;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease-out ;
+        cursor: pointer;
+        box-shadow:0 0 8px rgb(255, 255, 255);
+    }
+    .buttons div p {
+        text-shadow: 1px 1px 0  white;
+    }
+    .buttons div:hover {
+        background-color: white;
+        color: black;
+        box-shadow: none;
+    }
+    .buttons .equal {
+        background-color: rgb(0, 157, 255);
+        
+    }
+    .buttons .equal:hover {
+        background-color: rgb(240, 123, 28);
+        color: white;
+    }
+    .buttons .reversed {
+        background-color: white ;
+        color: black;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.822);
+        
+    }
+    .buttons .reversed:hover {
+        background-color: rgb(9, 221, 55);
+        color: white;
+        box-shadow: none;
+    }
+    .buttons .back:hover {
+        background-color: rgb(215, 20, 20);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="mainbody">
+        <div class="display">
+            <div class="inputs">123</div>
+            <div class="result">123</div>
+        </div>
+        <div class ="buttons">
+            <div class="leftpara reversed"> &#40;</div>
+            <div class="rightpara reversed">&#41;</div>
+            <div class="mod reversed"><p>%</p></div>
+            <div class="back reversed"><p>DLT</p></div>
+            <div class="seven"><p>7</p></div>
+            <div class="eight"><p>8</p></div>
+            <div class="nine"><p>9</p></div>
+            <div class="divide reversed"><p>/</p></div>
+            <div class="four"><p>4</p></div>
+            <div class="five"><p>5</p></div>
+            <div class="six"><p>6</p></div>
+            <div class="multi reversed"><p>*</p></div>
+            <div class="one"><p>1</p></div>
+            <div class="two"><p>2</p></div>
+            <div class="three"><p>3</p></div>
+            <div class="minus reversed"><p>-</p></div>
+            <div class="zero"><P>0</P></div>
+            <div class="dot"><p>.</p></div>
+            <div class="equal"><p>=</p></div>
+            <div class="add reversed"><p>+</p></div>
+        </div>
+    </div>
+    <script>
+        let buttons = document.querySelectorAll(".buttons div");
+        let inputs = document.querySelector(".inputs");
+        let result = document.querySelector(".result");
+        let doubleOperator = false ;
+        let doMath = (element) => {
+         let numbers = "1234567890" ;
+         if (numbers.includes(element.textContent)) {
+            inputs.textContent += element.textContent ;
+            doubleOperator = false ;
+         } else if ( element.textContent == "DLT") {
+            inputs.textContent = inputs.textContent.slice(0,-1) ;
+         } else if ( element.textContent == "=") {
+            let getResult = (input) => {
+            let textArray = input.split(/[*()%+\/\-]/) ;
+            let operatorsArray = input.split("").filter(item => !numbers.includes(item));
+            
+            } ;
+            return getResult(inputs.textContent) ;
+         } else {
+          if(!doubleOperator) {
+            inputs.textContent += element.textContent ;
+            doubleOperator = true ;
+          }
+         }
+        };
+        buttons.forEach( btn => btn.addEventListener("click", () => doMath(btn))) ;
+        
+
+    </script>
+</body>
+</html>
