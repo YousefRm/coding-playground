@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            font-size: 1rem;
+        }
+        * , *::after , *::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        img , input , button  {
+            display: block;
+            
+        }
+        body {
+            height: 100vh;
+           
+        }
+        .main {
+            display: flex;
+            height: 100vh;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+
+        }
+        .main .section1 {
+            background-color: black;
+            flex: 1;
+            height: 100vh;
+        }
+       .main .section2 {
+         flex: 1;
+       }
+       form {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        align-items: center;
+        justify-content: space-evenly;
+        
+       }
+      .sub1 {
+        font-size: 4em;
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      .sub2  {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        flex: 2;
+        
+      }
+      .sub2 div {
+        min-width: 35%;
+
+      }
+      .sub2 input {
+        font-size: 1em;
+        height: 20%;
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        transition: border-bottom 0.2s ease-in;
+        
+      }
+      .sub2 input:focus {
+        border-bottom: 1px solid rgb(29, 111, 232) ;
+      }
+      .sub2 input:invalid {
+        border-bottom: 1px solid red;
+      }
+      .sub3 {
+        flex:1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+     .sub3 button {
+        font-size: 1.5em;
+        padding: 0.4em 1em;
+        border-radius: 0.5em;
+        background-color: black;
+        color: white;
+     }
+     .sub3 button:hover {
+        background-color:green;
+     }
+     @media(max-width: 500px) {
+        :root {
+            font-size: 0.7rem;
+        }
+     .main {
+        flex-direction: column;
+        height: 200vh;
+     }
+     }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <section class="section1"><img src="Forms-bro.svg"/> </section>
+        <section class="section2"><form>
+            <div class="sub1">Sign Up</div>
+            <div class="sub2">
+                <div>
+                <label for="first-name">First name</label>
+                <input type="text" name="first-name"/>
+                </div>
+                <div>
+                <label for="last-name">Last Name</label>
+                <input type="text" name="last-name"/>
+                </div>
+                <div>
+                <label for="Email">Email</label>
+                <input type="email" name="Email">
+                </div>
+                <div>
+                <label for="phone-number">Phone Number</label>
+                <input type="text" name="phone-number">
+                </div>
+                <div>
+                <label for="pass">Password</label>
+                <input type="password" name="pass" >
+                </div>
+                <div>
+                <label for="confirm">Confirm Password</label>
+                <input type="text" name="confirm">
+                </div>
+            </div>
+            <div class="sub3">
+                <button type="submit"> Create Acount</button>
+            </div>
+
+        </form></section>
+    </main>
+</body>
+</html>
