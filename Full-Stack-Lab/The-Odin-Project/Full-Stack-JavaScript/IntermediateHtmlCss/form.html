@@ -34,6 +34,7 @@
             background-color: black;
             flex: 1;
             height: 100vh;
+            
         }
        .main .section2 {
          flex: 1;
@@ -51,6 +52,7 @@
         flex: 1;
         display: flex;
         align-items: center;
+        text-shadow: 1px 1px 2px black;
       }
       .sub2  {
         width: 100%;
@@ -79,6 +81,9 @@
       .sub2 input:invalid {
         border-bottom: 1px solid red;
       }
+      .sub2 label {
+        text-shadow: 1px 1px 2px black;
+      }
       .sub3 {
         flex:1;
         display: flex;
@@ -91,11 +96,13 @@
         border-radius: 0.5em;
         background-color: black;
         color: white;
+        text-shadow: 1px 1px 4px white;
+        box-shadow: 1px 1px 4px black;
      }
      .sub3 button:hover {
         background-color:green;
      }
-     @media(max-width: 500px) {
+     @media(max-width: 600px) {
         :root {
             font-size: 0.7rem;
         }
