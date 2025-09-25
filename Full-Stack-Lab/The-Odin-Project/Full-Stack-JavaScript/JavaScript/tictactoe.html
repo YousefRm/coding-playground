@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     * , *::after, *::before {
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+     }
+     body {
+        position: absolute;
+        width:100%;
+        height: 100vh;
+     }
+     body > :nth-child(1) {
+        position: absolute;
+        width: 100%;
+     background-color: black;
+     height: 100vh;
+     display:flex;
+        justify-content: center;
+        align-items: center;
+        transition: scale 1s ease;
+        scale:1;
+        z-index: 2;
+     }
+     body > :nth-child(1) > :nth-child(1) {
+        background-color: white;
+        padding: 2em 4em;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px white;
+        display: flex;
+        flex-direction: column;
+        gap:1em;
+     }
+     body > :nth-child(1) > :nth-child(1) > :nth-child(2) > div {
+        transition: background-color 0.3s ease;
+     }
+     body > :nth-child(1) > :nth-child(1) > :nth-child(2) > div:hover {
+        background-color: green;
+        color: white;
+     }
+     body > :nth-child(2) {
+        z-index: 1;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 0px 0px 15px black;
+     }
+     .container {
+        padding: 1em;
+        display: grid;
+        grid-template: repeat(3,1fr) / repeat(3,1fr);
+        gap:1em;
+        width:20em ;
+        height: 20em;
+        border-radius: 8px;
+        scale:1.5;
+        box-shadow: 0px 0px 5px black;
+
+     }
+     .container > div {
+        font-size: 4em;
+        text-align: center;
+        background-color: black;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px black;
+        position: relative;
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.627);
+     }
+     .container > div.hover-x::before {
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        color: rgba(242, 42, 42, 0.599);
+        content: "X";
+        text-shadow: none;
+     }
+     .container > div.hover-o::before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+         color: rgba(133, 235, 65, 0.473);
+        content: "O";
+        text-shadow: none;
+     }
+     .section1.hidden {
+        scale:0;
+     }
+    </style>
+</head>
+<body>
+    <section class="section1">
+        <div>
+            <p style="background-color: black;color:white;padding:1em 1.5em;border-radius: 8px;box-shadow: 0px 0px 5px black;">Choose Your Symbol</p>
+            <div style="display:flex;gap:1em">
+                <div class="x" style="font-size: 2em;flex:1;text-align: center;padding:0.25em 0.5em;box-shadow: 0px 0px 15px black;border-radius: 8px;cursor:pointer;">X</div>
+                <div class="o" style="font-size: 2em;flex:1;text-align: center;padding:0.25em 0.5em;box-shadow:0px 0px 15px black;border-radius:8px;cursor:pointer;">O</div>
+            </div>
+        </div>
+    </section>
+    <section>
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    </section>
+    <script>
+        let x = document.querySelector(".x");
+        let o = document.querySelector(".o");
+        let section1 = document.querySelector(".section1");
+        let players = ["x","o"];
+        let player1;
+        let divs = Array.from(document.querySelector(".container").children);
+        x.addEventListener("click",start);
+        o.addEventListener("click",start);
+
+        function start() {
+            section1.classList.toggle("hidden");
+            this.classList.contains("x") ? player1= players[0] : player1= players[1];
+            
+        }
+        divs.forEach(element => {
+
+                element.addEventListener("click",function() {
+                    if(element.textContent === "") {
+                    element.classList.remove("hover-x","hover-o")
+                    element.textContent = player1;
+                    
+                    player1 == "x" ? player1 = "o" : player1 = "x";
+                    player1 == "x" ? element.style.color="green" : element.style.color="red";
+                    
+                    check();
+                     }
+                });
+                element.addEventListener("mouseenter",function(){
+                   if(element.textContent === ""){ player1 == "x" ? this.classList.add("hover-x") : this.classList.add("hover-o");}
+                })
+                element.addEventListener("mouseleave",function(){
+                    this.classList.remove("hover-x","hover-o");
+                })
+                
+        });
+        function check() {
+
+        }
+    </script>
+</body>
+</html>

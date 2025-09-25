@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+body,p,h1,h2,h3,h4,h5,h6,input {
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+}
+body {
+    width:100%;
+    
+    display: flex;
+    flex-direction: column;
+}
+header {
+    width:100%;
+    height: 10vh;
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5em;
+    box-shadow: 0px 4px 7px rgb(150, 149, 149);
+    justify-content: space-between;
+
+}
+header input {
+    padding: 0.5em 1em;
+    display: inline-block;
+    max-width: 100px;
+    font-size: 1.1em;
+    border: none;
+    text-align: center;
+    border-radius: 8px;
+}
+.inputs {
+    scale: 0;
+    transition: scale 0.3s ease;
+    
+}
+.inputs.show {
+    scale:1;
+}
+header > :nth-child(2) {
+    flex:1;
+}
+.add {
+    background-color: rgb(47, 165, 23);
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s ease;
+    font-weight: 600;
+}
+.add:hover {
+    background-color: rgb(34, 119, 16);
+}
+.add:active {
+    background-color: white;
+    color: green;
+}
+header h1 {
+    flex: 1.5;
+    text-shadow: 2px 2px 8px gray;
+}
+main {
+    
+    width:100%;
+    height:100%;
+    padding: 1em 1.5em;
+    gap: 1em;
+    display: grid;
+    grid-template: repeat(3,1fr) / repeat(3,1fr);
+}
+main > div {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 7px gray;
+    padding: 1em 1.5em;
+    font-size: 1.4em;
+    gap: 2em;
+    background-color: rgb(199, 199, 198);
+    flex:1;
+    border-radius: 8px;
+}
+main > div > :nth-child(1) {
+    text-align: center;
+    font-weight: 500;
+    font-size: 1em;
+}
+main > div > :nth-child(5) {
+    margin: auto;
+    padding: 0.5em 1em;
+    background-color: rgba(255, 0, 0, 0.856);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+main > div > :nth-child(5):hover {
+    background-color: rgb(179, 0, 0);
+}
+main > div > :nth-child(5):active {
+    background-color: white;
+    color: red;
+}
+
